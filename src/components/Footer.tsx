@@ -1,0 +1,238 @@
+import { useState, useEffect } from "react"
+import { Heart } from "lucide-react"
+
+export default function Footer() {
+  const [visitors, setVisitors] = useState(0)
+  const [likes, setLikes] = useState(0)
+  const [hasLiked, setHasLiked] = useState(false)
+  const [plusOnes, setPlusOnes] = useState<{ id: number; x: number; y: number }[]>([])
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    checkMobile()
+    window.addEventListener("resize", checkMobile)
+    return () => window.removeEventListener("resize", checkMobile)
+  }, [])
+
+  useEffect(() => {
+    // 1. Handle Visitor Counter
+    // 1. Handle Visitor Counter
+    const storedVisitors = localStorage.getItem("ayush_portfolio_visitors_v2")
+    if (storedVisitors) {
+      const newVal = parseInt(storedVisitors, 10) + 1
+      setVisitors(newVal)
+      localStorage.setItem("ayush_portfolio_visitors_v2", newVal.toString())
+    } else {
+      setVisitors(1)
+      localStorage.setItem("ayush_portfolio_visitors_v2", "1")
+    }
+
+    // 2. Handle Likes Counter
+    const storedLikes = localStorage.getItem("ayush_portfolio_likes_v2")
+    if (storedLikes) {
+      setLikes(parseInt(storedLikes, 10))
+    } else {
+      localStorage.setItem("ayush_portfolio_likes_v2", "0")
+    }
+
+    // 3. Check if user already liked
+    const userLiked = localStorage.getItem("ayush_portfolio_has_liked_v2")
+    if (userLiked === "true") {
+      setHasLiked(true)
+    }
+  }, [])
+
+  const handleLike = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const newLikesCount = likes + 1
+    setLikes(newLikesCount)
+    localStorage.setItem("ayush_portfolio_likes_v2", newLikesCount.toString())
+
+    // Animate a floating +1
+    const rect = e.currentTarget.getBoundingClientRect()
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
+
+    const newId = Date.now()
+    setPlusOnes((prev) => [...prev, { id: newId, x, y }])
+
+    // Remove after animation completes
+    setTimeout(() => {
+      setPlusOnes((prev) => prev.filter((item) => item.id !== newId))
+    }, 1000)
+
+    if (!hasLiked) {
+      setHasLiked(true)
+      localStorage.setItem("ayush_portfolio_has_liked_v2", "true")
+    }
+  }
+
+  // Helper to format numbers with correct ordinal suffixes (e.g. 1st, 2nd, 3rd, 1482nd)
+  const getOrdinalVisitor = (num: number) => {
+    const pr = new Intl.PluralRules("en-US", { type: "ordinal" })
+    const suffixes = {
+      zero: "th",
+      one: "st",
+      two: "nd",
+      few: "rd",
+      many: "th",
+      other: "th"
+    }
+    const rule = pr.select(num)
+    const suffix = suffixes[rule as keyof typeof suffixes] || "th"
+    return `${num.toLocaleString()}${suffix}`
+  }
+
+  return (
+    <footer className="relative mb-[18px] w-full bg-[#f5f5f0] dark:bg-[#0a0a0a] text-black dark:text-white transition-colors duration-300 border-t border-[var(--pattern)] [--pattern:var(--color-neutral-300)] dark:[--pattern:rgba(255,255,255,0.08)] py-12 md:py-24 overflow-hidden flex flex-col justify-center items-center">
+      {/* Centered full-height vertical borders wrapper */}
+      <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-full max-w-7xl pointer-events-none z-10">
+        <div className="absolute top-0 left-0 h-full border-l border-[var(--pattern)]" />
+        <div className="absolute top-0 right-0 h-full border-l border-[var(--pattern)]" />
+      </div>
+
+      <div className="max-w-7xl mx-auto w-full px-8 md:px-20 relative z-10" style={{ paddingLeft: isMobile ? "18px" : "0px", paddingRight: isMobile ? "18px" : "0px" }}>
+        {/* Footer 3-Grid Layout */}
+        <div className="w-full flex md:grid md:grid-cols-3 border-t border-b md:border  border-[var(--pattern)] divide-x divide-[var(--pattern)] bg-transparent font-mono select-none overflow-x-auto snap-x snap-mandatory no-scrollbar">
+
+          {/* Cell 1: Acknowledgement */}
+          <div className="p-6 md:p-12 flex flex-col justify-between gap-6 min-h-[180px] md:min-h-[220px] w-[80vw] sm:w-[50vw] md:w-auto shrink-0 snap-center">
+            <div className="flex flex-col gap-1">
+              <span className="text-[9px] font-bold text-neutral-450 dark:text-neutral-500 uppercase tracking-widest">
+                [ ACKNOWLEDGEMENT ]
+              </span>
+              <span className="text-neutral-955 dark:text-neutral-50 text-xs font-semibold leading-relaxed mt-2 uppercase">
+                Thank you for visiting my digital canvas.
+              </span>
+            </div>
+            <span className="text-neutral-400 dark:text-neutral-500 text-[9px] font-bold uppercase tracking-widest">
+              NAGPUR, MH, IN
+            </span>
+          </div>
+
+          {/* Cell 2: Visitor Analytics (Plain simple ordinal greeting) */}
+          <div className="p-6 md:p-12 flex flex-col justify-between gap-6 min-h-[180px] md:min-h-[220px] w-[80vw] sm:w-[50vw] md:w-auto shrink-0 snap-center">
+            <div className="flex flex-col gap-1">
+              <span className="text-[9px] font-bold text-neutral-400 dark:text-neutral-500 uppercase tracking-widest">
+                [ VISITOR INDEX ]
+              </span>
+              <span className="text-neutral-950 dark:text-neutral-50 text-xs font-semibold leading-relaxed mt-2 uppercase">
+                You are the {getOrdinalVisitor(visitors)} visitor to explore this space.
+              </span>
+            </div>
+            <div className="flex items-center gap-1.5 text-[9px] text-[#059669] dark:text-[#10b981] font-bold uppercase tracking-wider">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#059669] dark:bg-[#10b981] animate-pulse" />
+              ONLINE & RECORDED
+            </div>
+          </div>
+
+          {/* Cell 3: Vibe Check (Interactive Like Button) */}
+          <div className="p-6 md:p-12 flex flex-col justify-between gap-6 min-h-[180px] md:min-h-[220px] w-[80vw] sm:w-[50vw] md:w-auto shrink-0 snap-center relative">
+            <div className="flex flex-col gap-1">
+              <span className="text-[9px] font-bold text-neutral-400 dark:text-neutral-500 uppercase tracking-widest">
+                [ VIBE CHECK ]
+              </span>
+              <span className="text-neutral-500 dark:text-neutral-400 text-[10px] mt-1 uppercase">
+                Hit the checker if you liked my projects & design
+              </span>
+            </div>
+
+            {/* Like Button */}
+            <button
+              onClick={handleLike}
+              className="relative overflow-hidden w-full py-3.5 px-4 mt-2 border border-[var(--pattern)] hover:border-neutral-950 dark:hover:border-white transition-all bg-transparent hover:bg-neutral-950/5 dark:hover:bg-white/5 cursor-pointer font-bold text-xs uppercase flex items-center justify-between group active:scale-[0.98] outline-none"
+            >
+              {/* Floating +1 Elements */}
+              {plusOnes.map((p) => (
+                <span
+                  key={p.id}
+                  className="absolute text-[#059669] dark:text-[#10b981] text-xs font-bold pointer-events-none animate-float-fade-up"
+                  style={{ left: p.x, top: p.y - 15 }}
+                >
+                  +1
+                </span>
+              ))}
+
+              <div className="flex items-center gap-2">
+                <Heart
+                  className={`w-4 h-4 transition-all duration-300 ${hasLiked
+                    ? "fill-[#ef4444] stroke-[#ef4444] scale-110"
+                    : "text-neutral-400 group-hover:text-[#ef4444] group-hover:scale-105"
+                    }`}
+                />
+                <span className="text-neutral-900 dark:text-white">
+                  {hasLiked ? "Vibe Approved!" : "Approve Vibe"}
+                </span>
+              </div>
+              <span className="text-neutral-500 dark:text-neutral-400 group-hover:text-neutral-950 dark:group-hover:text-white transition-colors">
+                {likes} LIKES
+              </span>
+            </button>
+          </div>
+
+        </div>
+
+        {/* Bottom Socials & Nav Row */}
+        <div className="w-full border-t border-[var(--pattern)] pt-8 flex flex-row flex-wrap justify-between items-center gap-y-4 gap-x-6 font-mono" style={{marginTop: "18px"}}>
+          <div className="flex flex-wrap gap-x-4 sm:gap-x-6 gap-y-2 text-xs text-neutral-450 dark:text-neutral-500 uppercase tracking-widest select-none justify-start items-center">
+            <span>[ CONNECT ]</span>
+            <div className="flex flex-wrap gap-x-3 sm:gap-x-4 gap-y-1">
+              <a
+                href="https://github.com/AyushNikhade"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-neutral-900 dark:text-white hover:text-[#059669] dark:hover:text-[#10b981] transition-colors"
+              >
+                GitHub↗
+              </a>
+              <a
+                href="https://linkedin.com/in/ayushnikhade04"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-neutral-900 dark:text-white hover:text-[#059669] dark:hover:text-[#10b981] transition-colors"
+              >
+                LinkedIn↗
+              </a>
+              <a
+                href="mailto:ayushnikhade888@gmail.com"
+                className="text-neutral-900 dark:text-white hover:text-[#059669] dark:hover:text-[#10b981] transition-colors"
+              >
+                Email↗
+              </a>
+            </div>
+          </div>
+
+          <div className="text-[10px] text-neutral-450 dark:text-neutral-500 uppercase tracking-widest text-left select-none">
+            © {new Date().getFullYear()} AYUSH NIKHADE // ALL RIGHTS RESERVED
+          </div>
+        </div>
+      </div>
+
+      {/* Floating animation keyframes injection */}
+      <style>{`
+        @keyframes floatFadeUp {
+          0% {
+            transform: translateY(0) scale(0.8);
+            opacity: 1;
+          }
+          100% {
+            transform: translateY(-30px) scale(1.1);
+            opacity: 0;
+          }
+        }
+        .animate-float-fade-up {
+          animation: floatFadeUp 800ms cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
+    </footer>
+  )
+}

@@ -18,6 +18,7 @@ function Navbar() {
 
       const scrollPos = window.scrollY + window.innerHeight / 3
       const projectsEl = document.getElementById("projects")
+      const experienceEl = document.getElementById("experience")
       const skillsEl = document.getElementById("skills")
       const contactEl = document.getElementById("contact")
 
@@ -32,6 +33,8 @@ function Navbar() {
         setActiveSection("skills")
       } else if (projectsEl && scrollPos >= projectsEl.offsetTop) {
         setActiveSection("projects")
+      } else if (experienceEl && scrollPos >= experienceEl.offsetTop) {
+        setActiveSection("experience")
       } else {
         setActiveSection("home")
       }
@@ -83,6 +86,16 @@ function Navbar() {
     }
   }
 
+  const scrollToExperience = () => {
+    const section = document.getElementById("experience")
+    if (section && !isProjectActive()) {
+      section.scrollIntoView({ behavior: "smooth" })
+    } else {
+      window.history.pushState(null, "", "/#experience")
+      window.dispatchEvent(new Event("popstate"))
+    }
+  }
+
   const scrollToSkills = () => {
     const section = document.getElementById("skills")
     if (section && !isProjectActive()) {
@@ -128,24 +141,30 @@ function Navbar() {
             <span>Home</span>
           </button>
           <button
+            onClick={() => { scrollToExperience(); setMenuOpen(false); }}
+            className="flex items-baseline gap-4 hover:text-emerald-500 transition-colors text-left border-0 bg-transparent cursor-pointer outline-none"
+          >
+            <span>Experience</span>
+          </button>
+          <button
             onClick={() => { scrollToProjects(); setMenuOpen(false); }}
             className="flex items-baseline gap-4 hover:text-emerald-500 transition-colors text-left border-0 bg-transparent cursor-pointer outline-none"
           >
-            <span className="text-sm font-normal text-neutral-450 dark:text-neutral-500">02</span>
+            <span className="text-sm font-normal text-neutral-450 dark:text-neutral-500">03</span>
             <span>Projects</span>
           </button>
           <button
             onClick={() => { scrollToSkills(); setMenuOpen(false); }}
             className="flex items-baseline gap-4 hover:text-emerald-500 transition-colors text-left border-0 bg-transparent cursor-pointer outline-none"
           >
-            <span className="text-sm font-normal text-neutral-450 dark:text-neutral-500">03</span>
+            <span className="text-sm font-normal text-neutral-450 dark:text-neutral-500">04</span>
             <span>Skills</span>
           </button>
           <button
             onClick={() => { scrollToContact(); setMenuOpen(false); }}
             className="flex items-baseline gap-4 hover:text-emerald-500 transition-colors text-left border-0 bg-transparent cursor-pointer outline-none"
           >
-            <span className="text-sm font-normal text-neutral-450 dark:text-neutral-500">04</span>
+            <span className="text-sm font-normal text-neutral-450 dark:text-neutral-500">05</span>
             <span>Contact</span>
           </button>
         </div>
@@ -154,7 +173,7 @@ function Navbar() {
       <nav
         className={`fixed z-[200] left-1/2 -translate-x-1/2 transition-all duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] select-none flex items-center border [--pattern:var(--color-neutral-300)] dark:[--pattern:rgba(255,255,255,0.08)]
           ${scrolled
-            ? "top-4 w-[94%] sm:w-[90%] max-w-[620px] h-14 bg-white/40 dark:bg-[#121212]/70 backdrop-blur-[8px] border-neutral-300/60 dark:border-neutral-800/60 shadow-[0_12px_40px_rgba(0,0,0,0.08),inset_0_1px_1px_rgba(255,255,255,0.7)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.05)] rounded-full"
+            ? "top-4 w-[94%] sm:w-[90%] max-w-[820px] h-14 bg-white/40 dark:bg-[#121212]/70 backdrop-blur-[8px] border-neutral-300/60 dark:border-neutral-800/60 shadow-[0_12px_40px_rgba(0,0,0,0.08),inset_0_1px_1px_rgba(255,255,255,0.7)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.05)] rounded-full"
             : "top-9 lg:top-0 w-full max-w-7xl h-20 bg-[#f5f5f0]/80 dark:bg-[#0a0a0a]/80 backdrop-blur-md border-t-transparent border-x-transparent border-b-[var(--pattern)] rounded-none"
           }`}
         style={{
@@ -195,20 +214,28 @@ function Navbar() {
               </button>
 
               <button
+                onClick={scrollToExperience}
+                className="relative py-1.5 px-1.5 md:px-3 group flex items-center gap-1 cursor-pointer transition-colors border-0 bg-transparent outline-none"
+              >
+                <span className="absolute inset-0 bg-neutral-200/40 dark:bg-neutral-800/50 rounded-full opacity-0 group-hover:opacity-100 scale-95 group-hover:scale-100 transition-all duration-300 -z-10" />
+                <span className={`text-[11px] uppercase tracking-widest font-bold transition-colors duration-300 ${activeSection === "experience" ? "text-black dark:text-white" : "text-neutral-400 dark:text-neutral-500 group-hover:text-neutral-800 dark:group-hover:text-neutral-200"}`}>experience</span>
+              </button>
+
+              <button
                 onClick={scrollToProjects}
                 className="relative py-1.5 px-1.5 md:px-3 group flex items-center gap-1 cursor-pointer transition-colors border-0 bg-transparent outline-none"
               >
                 <span className="absolute inset-0 bg-neutral-200/40 dark:bg-neutral-800/50 rounded-full opacity-0 group-hover:opacity-100 scale-95 group-hover:scale-100 transition-all duration-300 -z-10" />
-                <span className={`hidden sm:inline text-[9px] font-mono transition-colors duration-300 ${activeSection === "projects" ? "text-emerald-500 font-bold" : "text-neutral-400 dark:text-neutral-500"}`}>02</span>
+                <span className={`hidden sm:inline text-[9px] font-mono transition-colors duration-300 ${activeSection === "projects" ? "text-emerald-500 font-bold" : "text-neutral-400 dark:text-neutral-500"}`}>03</span>
                 <span className={`text-[11px] uppercase tracking-widest font-bold transition-colors duration-300 ${activeSection === "projects" ? "text-black dark:text-white" : "text-neutral-400 dark:text-neutral-500 group-hover:text-neutral-800 dark:group-hover:text-neutral-200"}`}>projects</span>
               </button>
 
               <button
                 onClick={scrollToSkills}
-                className="relative py-1.5 px-1.5 md:px-3 group flex items-center gap-1 cursor-pointer transition-colors border-0 bg-transparent outline-none"
+                className="relative py-1.5 px-1.5 md:px-3 group flex items-center gap-3 cursor-pointer transition-colors border-0 bg-transparent outline-none"
               >
                 <span className="absolute inset-0 bg-neutral-200/40 dark:bg-neutral-800/50 rounded-full opacity-0 group-hover:opacity-100 scale-95 group-hover:scale-100 transition-all duration-300 -z-10" />
-                <span className={`hidden sm:inline text-[9px] font-mono transition-colors duration-300 ${activeSection === "skills" ? "text-emerald-500 font-bold" : "text-neutral-400 dark:text-neutral-500"}`}>03</span>
+                <span className={`hidden sm:inline text-[9px] font-mono transition-colors duration-300 ${activeSection === "skills" ? "text-emerald-500 font-bold" : "text-neutral-400 dark:text-neutral-500"}`}>04</span>
                 <span className={`text-[11px] uppercase tracking-widest font-bold transition-colors duration-300 ${activeSection === "skills" ? "text-black dark:text-white" : "text-neutral-400 dark:text-neutral-500 group-hover:text-neutral-800 dark:group-hover:text-neutral-200"}`}>skills</span>
               </button>
 
@@ -217,7 +244,7 @@ function Navbar() {
                 className="relative py-1.5 px-1.5 md:px-3 group flex items-center gap-3 cursor-pointer transition-colors border-0 bg-transparent outline-none"
               >
                 <span className="absolute inset-0 bg-neutral-200/40 dark:bg-neutral-800/50 rounded-full opacity-0 group-hover:opacity-100 scale-95 group-hover:scale-100 transition-all duration-300 -z-10" />
-                <span className={`hidden sm:inline text-[9px] font-mono transition-colors duration-300 ${activeSection === "contact" ? "text-emerald-500 font-bold" : "text-neutral-400 dark:text-neutral-500"}`}>04</span>
+                <span className={`hidden sm:inline text-[9px] font-mono transition-colors duration-300 ${activeSection === "contact" ? "text-emerald-500 font-bold" : "text-neutral-400 dark:text-neutral-500"}`}>05</span>
                 <span className={`text-[11px] uppercase tracking-widest font-bold transition-colors duration-300 ${activeSection === "contact" ? "text-black dark:text-white" : "text-neutral-400 dark:text-neutral-500 group-hover:text-neutral-800 dark:group-hover:text-neutral-200"}`}>contact</span>
               </button>
             </div>

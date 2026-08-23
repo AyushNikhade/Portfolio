@@ -105,7 +105,7 @@ export default function SiteLoader({ onComplete }: { onComplete: () => void }) {
 
         {/* Secondary branding info */}
         <div className="mt-12 flex items-center gap-1.5 text-[8px] font-bold tracking-widest text-neutral-400 dark:text-neutral-600 uppercase">
-          <span>GANDHINAGAR, GJ, IN</span>
+          <span>NAGPUR, MH, IN</span>
           <span>•</span>
           <span>EST. 2026</span>
         </div>

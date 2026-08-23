@@ -148,7 +148,7 @@ export default function HerowithScale() {
                     {/* ROLE */}
                     <div className="border-b border-[var(--pattern)]" style={{ padding: "10px 15px" }}>
                       <span className="text-[8px] font-bold uppercase tracking-widest text-neutral-400 dark:text-neutral-500 font-mono">ROLE</span>
-                      <p className="text-neutral-900 dark:text-neutral-100 text-sm font-semibold mt-1">Software Engineer &amp; ML Developer</p>
+                      <p className="text-neutral-900 dark:text-neutral-100 text-sm font-semibold mt-1">Software Development Engineer</p>
                     </div>
 
                     {/* LOCATION & LOCAL TIME — 2 col */}
@@ -182,7 +182,7 @@ export default function HerowithScale() {
                       <span className="text-[8px] font-bold uppercase tracking-widest text-neutral-400 dark:text-neutral-500 font-mono">Open to</span>
                       <div className="flex items-center gap-1.5 mt-1">
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
-                        <span className="text-neutral-900 dark:text-neutral-100 text-sm font-semibold">SE &amp; ML roles, internships</span>
+                        <span className="text-neutral-900 dark:text-neutral-100 text-sm font-semibold">SE &amp; ML roles</span>
                       </div>
                     </div>
 
@@ -282,7 +282,7 @@ export default function HerowithScale() {
                         {/* ROLE */}
                         <div className="p-3 md:p-4 border-r border-b border-[var(--pattern)] flex flex-col justify-center" style={{ paddingLeft: "10px" }}>
                           <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-wider text-neutral-400 dark:text-neutral-500">ROLE</span>
-                          <span className="text-neutral-900 dark:text-neutral-100 text-xs md:text-sm font-semibold mt-1">  Software Engineer &amp; ML Developer</span>
+                          <span className="text-neutral-900 dark:text-neutral-100 text-xs md:text-sm font-semibold mt-1">  Software Development Engineer </span>
                         </div>
 
                         {/* LOCATION */}
@@ -316,7 +316,7 @@ export default function HerowithScale() {
                           <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-wider text-neutral-400 dark:text-neutral-500">Open to</span>
                           <div className="flex items-center gap-1.5 mt-1">
                             <span className="w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
-                            <span className="text-neutral-900 dark:text-neutral-100 text-xs md:text-sm font-semibold">SE &amp; ML roles, internships</span>
+                            <span className="text-neutral-900 dark:text-neutral-100 text-xs md:text-sm font-semibold">SE &amp; ML roles</span>
                           </div>
                         </div>
 

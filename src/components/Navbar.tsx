@@ -143,7 +143,8 @@ function Navbar() {
           <button
             onClick={() => { scrollToExperience(); setMenuOpen(false); }}
             className="flex items-baseline gap-4 hover:text-emerald-500 transition-colors text-left border-0 bg-transparent cursor-pointer outline-none"
-          >
+          > 
+            <span className="text-sm font-normal text-neutral-450 dark:text-neutral-500">02</span>
             <span>Experience</span>
           </button>
           <button
@@ -218,6 +219,7 @@ function Navbar() {
                 className="relative py-1.5 px-1.5 md:px-3 group flex items-center gap-1 cursor-pointer transition-colors border-0 bg-transparent outline-none"
               >
                 <span className="absolute inset-0 bg-neutral-200/40 dark:bg-neutral-800/50 rounded-full opacity-0 group-hover:opacity-100 scale-95 group-hover:scale-100 transition-all duration-300 -z-10" />
+                <span className={`hidden sm:inline text-[9px] font-mono transition-colors duration-300 ${activeSection === "experience" ? "text-emerald-500 font-bold" : "text-neutral-400 dark:text-neutral-500"}`}>02</span>
                 <span className={`text-[11px] uppercase tracking-widest font-bold transition-colors duration-300 ${activeSection === "experience" ? "text-black dark:text-white" : "text-neutral-400 dark:text-neutral-500 group-hover:text-neutral-800 dark:group-hover:text-neutral-200"}`}>experience</span>
               </button>
 

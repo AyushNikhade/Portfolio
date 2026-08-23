@@ -118,8 +118,8 @@ export default function Experience() {
 
       <div className="relative z-10 flex w-full max-w-5xl flex-col items-center px-8 md:px-12">
           <div className="mb-10 flex flex-col items-center gap-3 text-center md:mb-14">
-            <span className="font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400">EXPERIENCE</span>
-            <h2 className="font-sans text-4xl font-black uppercase tracking-tight md:text-5xl">UPTIQ.AI / LOS</h2>
+            <span className="font-mono text-[20px] font-bold uppercase tracking-[0.2em] text-emerald-600 dark:text-emerald-400">EXPERIENCE</span>
+            <h2 className="font-sans text-3xl font-black uppercase tracking-tight md:text-4xl">UPTIQ.AI / LOS</h2>
             <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">Software Development Engineer Intern / 6 Months</span>
           </div>
 
@@ -203,9 +203,19 @@ export default function Experience() {
               </div>
             </div>
 
-            <div className="mt-4 min-h-16 border-l-2 border-emerald-500 pl-4">
-              <span className="font-mono text-[9px] font-bold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">{selected.label}</span>
-              <p className="mt-1 text-sm leading-6 text-neutral-600 dark:text-neutral-300">{selected.summary}</p>
+            <div
+              className="grid gap-3 px-4 md:grid-cols-2 md:gap-x-8 md:px-8"
+              style={{ marginTop: "24px" }}
+            >
+              {workstreams.map((node) => (
+                <div
+                  key={node.id}
+                  style={{ marginLeft: "20px", paddingLeft: "16px" }}
+                >
+                  <span className="font-mono text-[9px] font-bold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">{node.label}</span>
+                  <p className="mt-1 text-sm leading-6 text-neutral-600 dark:text-neutral-300">{node.summary}</p>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -219,7 +229,7 @@ export default function Experience() {
               >
                 <span className="font-mono text-[8px] font-bold tracking-[0.16em] text-emerald-600 dark:text-emerald-400">{node.label}</span>
                 <span className="mt-1 block text-sm font-bold">{node.title}</span>
-                {selectedId === node.id && <span className="mt-2 block text-xs leading-5 text-neutral-600 dark:text-neutral-300">{node.summary}</span>}
+                <span className="mt-2 block text-xs leading-5 text-neutral-600 dark:text-neutral-300">{node.summary}</span>
               </button>
             ))}
           </div>

@@ -5,6 +5,7 @@ import Hero from './pages/Hero'
 import Skills from './pages/Skillsection'
 import Contact from './pages/Contact'
 import AboutUs from './pages/AboutUs'
+import Experience from './pages/Experience'
 import Projects from './pages/Projects'
 import Footer from './components/Footer'
 import ProjectDetails from './pages/ProjectDetails'
@@ -234,6 +235,8 @@ function App() {
             <>
               <Hero />
               <AboutUs />
+              <Experience />
+              <div aria-hidden="true" className="h-24 bg-[#f5f5f0] dark:bg-[#0a0a0a] md:h-32" />
               <Projects />
               <Skills />
               <Contact />

@@ -333,6 +333,58 @@ const projectsList: Project[] = [
   class Edge,Dashboard,Mobile frontend;
   class Backend,Live backend;
   class DB,Cache database;`
+  },
+  {
+    index: "7",
+    title: "Satellite Vision",
+    subtitle: "AI-Powered Geospatial Land Cover & Environmental Change Detection",
+    description:
+      "Engineered an end-to-end computer vision platform using FastAPI, an 8-class EuroSAT CNN, and OpenCV to process high-resolution satellite rasters, classify land cover, and pinpoint critical environmental changes such as deforestation and urbanization.",
+    longDescription:
+      "Satellite Vision is a deep learning and geospatial intelligence system designed to process gigapixel satellite imagery for automated land-use classification and temporal environmental monitoring. Standard deep learning architectures fail on large satellite imagery due to GPU memory overflow and fixed input receptive fields. Satellite Vision overcomes this with an overlapping sliding-window tiler (64×64 windows with 50% stride) that feeds batches into a trained EuroSAT CNN. The system reconstructs full-dimension land-cover classification and confidence maps using probability-based arbitration. When analyzing temporal image pairs (e.g. 2014 vs. 2024), OpenCV morphological noise filters remove false-positive speckles, isolating true net shifts and critical ecological transitions including forest loss, urban expansion, and water depletion.",
+    frontendStack: ["React", "Vite", "Tailwind CSS", "Axios"],
+    backendStack: ["FastAPI", "Python", "Uvicorn", "MongoDB"],
+    otherStack: ["TensorFlow / Keras", "OpenCV", "NumPy", "Matplotlib", "EuroSAT"],
+    problemSolved:
+      "Detecting environmental degradation across large satellite captures manually requires hours of tedious photo-interpretation by GIS specialists, while standard neural networks crash when fed high-resolution satellite imagery directly. Satellite Vision automates tile-level feature extraction with confidence stitching and noise filtering, turning hours of manual inspection into instantaneous, repeatable change analytics with zero manual annotation.",
+    architecture:
+      "Decoupled client-server architecture. The React/Vite web interface allows selecting predefined regions (or uploading temporal satellite image pairs) and dispatches requests to the FastAPI backend. The HighResolutionChangeDetector engine slices rasters into normalized 64×64 tiles with stride 32. Batched inference (batch size 128) runs through the EuroSAT CNN, dynamically updating a pixel-level confidence matrix. The resulting land-use classifications are differenced, smoothed with OpenCV morphological opening/closing to reject single-pixel noise, and evaluated for critical environmental masks. Output visualizations and historical metadata are persisted in MongoDB and streamed back to the client.",
+    category: "AI / COMPUTER VISION",
+    year: "2025",
+    liveUrl: null,
+    githubUrl: "https://github.com/Megh1701/Satellite-Image-Analysis",
+    status: "COMPLETED",
+    accent: {
+      dot: "bg-teal-500",
+      glow: "group-hover:border-teal-400/60 dark:group-hover:border-teal-500/40",
+      tag: "border-teal-300/50 dark:border-teal-500/20 text-teal-700 dark:text-teal-400 bg-teal-500/5",
+      statusColor: "text-teal-600 dark:text-teal-400",
+      statusDot: "bg-teal-500",
+      shadow: "group-hover:shadow-[0_0_40px_rgba(20,184,166,0.08)] dark:group-hover:shadow-[0_0_40px_rgba(20,184,166,0.06)]",
+    },
+    features: [
+      "Sliding-window tiling engine (64×64 patch, stride 32) eliminating GPU memory bottlenecks on large satellite rasters",
+      "8-class EuroSAT CNN model classifying agricultural, forest, residential, industrial, and water terrains",
+      "Confidence-driven map reconstruction where overlapping tile predictions arbitrate based on maximum class probability",
+      "OpenCV morphological noise filtering (cv2.MORPH_OPEN/CLOSE) to eliminate speckle false positives",
+      "Automated environmental change detection isolating critical deforestation, urbanization, and water depletion metrics",
+      "MongoDB persistence for storing regional scans, class distribution breakdowns, and historical change percentages"
+    ],
+    architectureChart: `graph TD
+  Client["React / Vite Frontend"] --> API["FastAPI Backend"]
+  API --> Tiler["Sliding Window Tiler (64x64, stride 32)"]
+  Tiler --> CNN["EuroSAT CNN Inference (128 batch)"]
+  CNN --> Stitcher["Confidence-Weighted Stitcher"]
+  Stitcher --> Morph["OpenCV Morphological Noise Filter"]
+  Morph --> Diff["Temporal Change Delta Engine"]
+  Diff --> Critical["Critical Masks (Forest, Urban, Water)"]
+  Critical --> Mongo[("MongoDB Analysis History")]
+  Critical --> Vis["Matplotlib Visualization Generator"]
+  Vis --> Client
+
+  class Client,Vis frontend;
+  class API,Tiler,CNN,Stitcher,Morph,Diff,Critical backend;
+  class Mongo database;`
   }
 ]
 

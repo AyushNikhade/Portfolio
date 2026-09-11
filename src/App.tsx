@@ -36,6 +36,10 @@ const PROJECT_METADATA: Record<string, { title: string; description: string }> =
   "6": {
     title: "Crowd Sync - Case Study | Ayush Nikhade",
     description: "Case study for Crowd Sync, a collaborative team workspace designed for planning, coordination, and real-time updates."
+  },
+  "7": {
+    title: "Satellite Vision - Case Study | Ayush Nikhade",
+    description: "Case study for Satellite Vision (Satellite Image Analysis), an AI geospatial platform engineered by Ayush Nikhade using FastAPI, EuroSAT CNN, and OpenCV for automated land cover classification and environmental change detection."
   }
 }
 

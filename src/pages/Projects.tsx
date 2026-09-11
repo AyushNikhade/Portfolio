@@ -29,7 +29,7 @@ export const Cards: CardItem[] = [
     description: "Designed and developed the OM Money Zone website to make insurance, loans, and investment services simple, modern, and easy for users to explore online.",
     className: "bg-orange-400 text-stone-900 border-black",
     config: {
-      x: -320,
+      x: -420,
       y: -30,
       rotation: -8,
     },
@@ -64,7 +64,7 @@ export const Cards: CardItem[] = [
     description: "A tinder-like matching application connecting developers based on skill sets, interest levels, and stack profiles.",
     className: "bg-[#f0ece1] text-stone-900 border-black",
     config: {
-      x: -160,
+      x: -280,
       y: 20,
       rotation: 5,
     },
@@ -94,7 +94,7 @@ export const Cards: CardItem[] = [
     className: "bg-[#0a8dc8] text-stone-900 border-black",
 
     config: {
-      x: 0,
+      x: -140,
       y: -30,
       rotation: -5,
     },
@@ -132,7 +132,7 @@ export const Cards: CardItem[] = [
     description: "Full business website for a ceramic and sanitary ware exporter — product catalog, inquiry forms, and a clean B2B storefront.",
     className: "bg-[#48d28c] text-stone-900 border-black",
     config: {
-      x: 160,
+      x: 0,
       y: 20,
       rotation: -3,
     },
@@ -165,7 +165,7 @@ export const Cards: CardItem[] = [
     description: "My very first project — a classic Connect Four game built from scratch in first year with vanilla HTML, CSS, and JS.",
     className: "bg-[#1c1b1a] text-stone-100 border-black",
     config: {
-      x: 320,
+      x: 140,
       y: -25,
       rotation: 5,
     },
@@ -195,8 +195,8 @@ export const Cards: CardItem[] = [
     description: "A full-stack, real-time bus fleet platform combining AI edge devices, live fleet tracking, and admin/mobile monitoring dashboards.",
     className: "bg-[#7c3aed] text-stone-100 border-black",
     config: {
-      x: 480,
-      y: -10,
+      x: 280,
+      y: 15,
       rotation: -5,
     },
     skeleton: (
@@ -221,6 +221,44 @@ export const Cards: CardItem[] = [
               <div key={idx} className="flex-1 rounded-full bg-white/25" style={{ height: `${height}px` }} />
             ))}
           </div>
+        </div>
+      </div>
+    )
+  },
+  {
+    index: "7",
+    title: "Satellite Vision",
+    subtitle: "AI Land Cover & Change Detection",
+    stack: ["FastAPI", "TensorFlow", "OpenCV", "React"],
+    description: "Deep learning geospatial platform for high-resolution satellite imagery. Features sliding-window EuroSAT CNN classification, temporal diffing, and critical environmental change tracking.",
+    className: "bg-[#0d9488] text-stone-100 border-black",
+    config: {
+      x: 420,
+      y: -20,
+      rotation: 4,
+    },
+    skeleton: (
+      <div className="w-full h-28 border border-teal-300/30 rounded-xl p-2.5 flex flex-col justify-between bg-teal-950/40 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#2dd4bf_1px,transparent_1px)] [background-size:10px_10px]" />
+        <svg viewBox="0 0 200 90" className="w-full h-full text-teal-300/40 absolute inset-0">
+          <circle cx="100" cy="45" r="22" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" />
+          <circle cx="100" cy="45" r="40" fill="none" stroke="currentColor" strokeWidth="1" />
+          <line x1="100" y1="5" x2="100" y2="85" stroke="currentColor" strokeWidth="1" strokeDasharray="2 2" />
+          <line x1="20" y1="45" x2="180" y2="45" stroke="currentColor" strokeWidth="1" strokeDasharray="2 2" />
+          <polygon points="45,25 75,18 88,38 58,48" fill="rgba(45,212,191,0.25)" stroke="currentColor" strokeWidth="1.2" />
+          <polygon points="115,20 155,28 142,55 105,42" fill="rgba(239,68,68,0.3)" stroke="rgba(239,68,68,0.7)" strokeWidth="1.2" />
+          <polygon points="68,52 110,50 120,78 80,82" fill="rgba(59,130,246,0.3)" stroke="rgba(59,130,246,0.6)" strokeWidth="1.2" />
+        </svg>
+        <div className="flex items-center justify-between relative z-10">
+          <div className="flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse" />
+            <span className="text-[9px] font-mono font-bold tracking-wider text-teal-200 uppercase">SAT-SCAN // 64x64</span>
+          </div>
+          <span className="text-[8px] font-mono text-teal-300/70 border border-teal-400/30 px-1 py-0.5 rounded">EUROSAT 8-CLS</span>
+        </div>
+        <div className="flex justify-between items-end relative z-10">
+          <div className="text-[8px] font-mono text-teal-200/80">Δ 2014–2024</div>
+          <div className="text-[8px] font-mono text-emerald-400 font-bold">98.2% ACC</div>
         </div>
       </div>
     )
@@ -445,7 +483,7 @@ export default function Projects() {
               animX = spread * (isMobile ? 24 : 38)
               // Push them into the lower half of the active card so their tops are hidden
               animY = isMobile ? 220 : 260
-              animRotate = [-5, 3, -3, 4][stackIdx] ?? 0 // select the custom angle for this card's position in the stack
+              animRotate = [-6, 3, -3, 4, -4, 5][stackIdx] ?? 0 // select the custom angle for this card's position in the stack
               animZIndex = 51           // always < active card z:50, so active covers their tops
               animaScale = isMobile ? 0.55 : 0.68
             }

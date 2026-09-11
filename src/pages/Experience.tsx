@@ -89,8 +89,6 @@ export default function Experience() {
   const [selectedId, setSelectedId] = useState<NodeId>("coborrower")
   const [dragging, setDragging] = useState<{ id: NodeId; start: Position; pointer: Position } | null>(null)
 
-  const selected = workstreams.find((node) => node.id === selectedId) ?? workstreams[0]
-
   const updateDraggedNode = (clientX: number, clientY: number) => {
     if (!dragging || !mapRef.current) return
 

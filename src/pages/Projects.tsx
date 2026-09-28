@@ -22,172 +22,6 @@ export interface CardItem {
 
 export const Cards: CardItem[] = [
   {
-    index: "1",
-    title: "Omera",
-    subtitle: "Fintech & Remittance Platform",
-    stack: ["Next.js", "Typescript", "Tailwind CSS"],
-    description: "Designed and developed the OM Money Zone website to make insurance, loans, and investment services simple, modern, and easy for users to explore online.",
-    className: "bg-orange-400 text-stone-900 border-black",
-    config: {
-      x: -420,
-      y: -30,
-      rotation: -8,
-    },
-    // Vertical white lines of varying heights skeleton
-    skeleton: (
-      <div className="w-full h-28 opacity-80 border border-orange-400/40 rounded-xl bg-[#c5470e]/30 p-2 flex items-center justify-center">
-        <svg viewBox="0 0 256 120" className="w-full h-full text-white/35">
-          {Array.from({ length: 26 }).map((_, i) => {
-            const h = 50 + Math.sin(i * 0.28) * 35
-            return (
-              <line
-                key={i}
-                x1={15 + i * 9}
-                y1={60 - h / 2}
-                x2={15 + i * 9}
-                y2={60 + h / 2}
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-              />
-            )
-          })}
-        </svg>
-      </div>
-    )
-  },
-  {
-    index: "2",
-    title: "Devswipe",
-    subtitle: "Developer Swipe & Networking",
-    stack: ["MERN stack", "Tailwind", "Socket.IO", "JWT", "Docker"],
-    description: "A tinder-like matching application connecting developers based on skill sets, interest levels, and stack profiles.",
-    className: "bg-[#f0ece1] text-stone-900 border-black",
-    config: {
-      x: -280,
-      y: 20,
-      rotation: 5,
-    },
-    // Grid of dots/squares skeleton
-    skeleton: (
-      <div className="grid grid-cols-10 gap-1.5 w-full h-28 opacity-70 p-3 border border-stone-300/60 rounded-xl bg-stone-100/50">
-        {Array.from({ length: 40 }).map((_, i) => {
-          const opacities = [0.15, 0.3, 0.5, 0.7, 0.9, 0.4]
-          const opacity = opacities[i % opacities.length]
-          return (
-            <div
-              key={i}
-              className="aspect-square rounded-[2px] bg-stone-800"
-              style={{ opacity }}
-            />
-          )
-        })}
-      </div>
-    )
-  },
-  {
-    index: "3",
-    title: "Verdict AI",
-    subtitle: "Legal Intelligence Platform",
-    stack: ["Python", "FAISS", "RAG", "LangChain", "Redis"],
-    description: "Multilingual legal research platform for Indian court judgment discovery using RAG, hybrid semantic search, and FAISS vector indexing across 100K+ chunks.",
-    className: "bg-[#0a8dc8] text-stone-900 border-black",
-
-    config: {
-      x: -140,
-      y: -30,
-      rotation: -5,
-    },
-    // Wavy horizontal lines skeleton
-    skeleton: (
-      <div className="w-full h-28 opacity-80 border border-blue-400/40 rounded-xl bg-[#087cb0]/30 p-2 flex items-center justify-center">
-        <svg viewBox="0 0 256 120" className="w-full h-full text-white/30">
-          {Array.from({ length: 5 }).map((_, waveIdx) => {
-            const points = Array.from({ length: 50 }).map((_, i) => {
-              const x = (i * 256) / 49
-              const y = 60 + Math.sin(i * 0.35 + waveIdx * 0.9) * 12 + waveIdx * 6
-              return `${x},${y}`
-            }).join(" ")
-            return (
-              <polyline
-                key={waveIdx}
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                points={points}
-              />
-            )
-          })}
-        </svg>
-      </div>
-    )
-  },
-  {
-
-    index: "4",
-    title: "Eternal",
-    subtitle: "First Freelance Client",
-    stack: ["React.js", "Tailwind CSS", "MongoDB", "Vercel"],
-    description: "Full business website for a ceramic and sanitary ware exporter — product catalog, inquiry forms, and a clean B2B storefront.",
-    className: "bg-[#48d28c] text-stone-900 border-black",
-    config: {
-      x: 0,
-      y: 20,
-      rotation: -3,
-    },
-    // Matrix rows of tiny bars skeleton
-    skeleton: (
-      <div className="flex flex-col gap-1.5 w-full h-28 opacity-85 border border-emerald-400/40 rounded-xl bg-[#39ba78]/30 p-3 justify-center overflow-hidden">
-        {Array.from({ length: 5 }).map((_, rowIdx) => (
-          <div key={rowIdx} className="flex gap-1 w-full overflow-hidden">
-            {Array.from({ length: 28 }).map((_, barIdx) => {
-              const h = 6 + ((barIdx * 3 + rowIdx * 5) % 10)
-              return (
-                <div
-                  key={barIdx}
-                  style={{ height: `${h}px` }}
-                  className="w-1.5 bg-[#155a36] rounded-[1px] opacity-75"
-                />
-              )
-            })}
-          </div>
-        ))}
-      </div>
-    )
-  },
-  {
-
-    index: "5",
-    title: "Connect Four",
-    subtitle: "Where It All Began",
-    stack: ["HTML", "CSS", "JavaScript"],
-    description: "My very first project — a classic Connect Four game built from scratch in first year with vanilla HTML, CSS, and JS.",
-    className: "bg-[#1c1b1a] text-stone-100 border-black",
-    config: {
-      x: 140,
-      y: -25,
-      rotation: 5,
-    },
-    // Interface layout wireframe blueprint skeleton
-    skeleton: (
-      <div className="w-full h-28 border border-white/10 rounded-xl p-2.5 flex gap-2 relative bg-neutral-900/40 select-none">
-        <div className="w-1/3 border border-dashed border-white/20 rounded flex flex-col justify-between p-1.5">
-          <div className="w-5 h-5 rounded-full border border-white/20" />
-          <div className="h-1.5 w-full bg-white/20 rounded" />
-        </div>
-        <div className="flex-1 flex flex-col gap-1.5">
-          <div className="h-6 border border-dashed border-white/20 rounded flex gap-1 items-center px-1">
-            <div className="w-2 h-2 rounded bg-white/35" />
-            <div className="w-2 h-2 rounded bg-white/35" />
-            <div className="w-2 h-2 rounded bg-white/35" />
-          </div>
-          <div className="flex-1 border border-dashed border-white/20 rounded" />
-        </div>
-      </div>
-    )
-  },
-  {
     index: "6",
     title: "Crowd Sync",
     subtitle: "AI-Powered Bus Fleet Management",
@@ -195,9 +29,9 @@ export const Cards: CardItem[] = [
     description: "A full-stack, real-time bus fleet platform combining AI edge devices, live fleet tracking, and admin/mobile monitoring dashboards.",
     className: "bg-[#7c3aed] text-stone-100 border-black",
     config: {
-      x: 280,
-      y: 15,
-      rotation: -5,
+      x: -90,
+      y: 0,
+      rotation: -3,
     },
     skeleton: (
       <div className="w-full h-28 border border-violet-300/30 rounded-xl p-2.5 flex flex-col gap-2 bg-violet-500/20 relative overflow-hidden">
@@ -233,9 +67,9 @@ export const Cards: CardItem[] = [
     description: "Deep learning geospatial platform for high-resolution satellite imagery. Features sliding-window EuroSAT CNN classification, temporal diffing, and critical environmental change tracking.",
     className: "bg-[#0d9488] text-stone-100 border-black",
     config: {
-      x: 420,
-      y: -20,
-      rotation: 4,
+      x: 90,
+      y: 0,
+      rotation: 3,
     },
     skeleton: (
       <div className="w-full h-28 border border-teal-300/30 rounded-xl p-2.5 flex flex-col justify-between bg-teal-950/40 relative overflow-hidden">

@@ -10,6 +10,7 @@ export default function Contact() {
   const [message, setMessage] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
   const [isDesktop, setIsDesktop] = useState(typeof window !== "undefined" ? window.innerWidth >= 1024 : false)
 
@@ -26,6 +27,13 @@ export default function Contact() {
     e.preventDefault()
     if (!email || !message) return
 
+    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY
+    if (!accessKey || accessKey === "YOUR_ACCESS_KEY_HERE") {
+      setErrorMessage("Access key missing. Please configure VITE_WEB3FORMS_ACCESS_KEY.")
+      setTimeout(() => setErrorMessage(null), 5000)
+      return
+    }
+
     setIsSubmitting(true)
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
@@ -35,7 +43,7 @@ export default function Contact() {
           Accept: "application/json",
         },
         body: JSON.stringify({
-          access_key: import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "YOUR_ACCESS_KEY_HERE",
+          access_key: accessKey,
           email: email,
           message: message,
           from_name: "Portfolio Contact Form",
@@ -51,11 +59,13 @@ export default function Contact() {
         setTimeout(() => setShowSuccess(false), 4000)
       } else {
         console.error("Web3Forms error:", data)
-        alert(data.message || "Failed to post message on slate. Please try again.")
+        setErrorMessage(data.message || "Failed to post message on slate. Please try again.")
+        setTimeout(() => setErrorMessage(null), 5000)
       }
     } catch (err) {
       console.error("Failed to submit contact form:", err)
-      alert("Something went wrong while sending the message. Please check your internet connection and try again.")
+      setErrorMessage("Network error. Please check your connection and try again.")
+      setTimeout(() => setErrorMessage(null), 5000)
     } finally {
       setIsSubmitting(false)
     }
@@ -268,7 +278,40 @@ export default function Contact() {
 
         {/* Dismiss Icon */}
         <button
+          type="button"
           onClick={() => setShowSuccess(false)}
+          className="ml-auto text-white/40 hover:text-white/80 transition-colors text-[10px] cursor-pointer absolute right-4 top-4"
+        >
+          ✕
+        </button>
+      </div>
+
+      {/* Floating Error Toast Notification */}
+      <div
+        className="fixed z-300 top-8 left-1/2 z-50 max-w-sm p-4 bg-[#2b1417]/95 backdrop-blur-md border border-[#ef4444]/40 rounded-xl shadow-2xl flex items-start gap-3 text-white text-xs"
+        style={{
+          transform: errorMessage ? "translate(-50%, 0px) scale(1)" : "translate(-50%, -100px) scale(0.95)",
+          opacity: errorMessage ? 1 : 0,
+          pointerEvents: errorMessage ? "auto" : "none",
+          transition: "all 450ms cubic-bezier(0.16, 1, 0.3, 1)",
+          fontFamily: '"Patrick Hand", cursive',
+          willChange: "transform, opacity"
+        }}
+      >
+        <svg className="w-5 h-5 text-[#ef4444] shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" />
+          <line x1="12" y1="8" x2="12" y2="12" strokeWidth="2" strokeLinecap="round" />
+          <circle cx="12" cy="16" r="1" fill="currentColor" />
+        </svg>
+        <div className="flex flex-col gap-1 pr-6">
+          <span className="text-[#fca5a5] font-bold text-[11px] tracking-widest uppercase select-none">[ ERROR ]</span>
+          <span className="text-white/90 leading-normal text-[14px]">{errorMessage}</span>
+        </div>
+
+        {/* Dismiss Icon */}
+        <button
+          type="button"
+          onClick={() => setErrorMessage(null)}
           className="ml-auto text-white/40 hover:text-white/80 transition-colors text-[10px] cursor-pointer absolute right-4 top-4"
         >
           ✕

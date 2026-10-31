@@ -34,8 +34,8 @@ export default function AboutUs() {
             <div className="max-w-7xl mx-auto w-full px-8 md:px-20 relative z-10 flex flex-col justify-center">
 
                 {/* Section Header with explicit margin style for spacing with bottom content */}
-                <div style={{ marginBottom: "50px" }} className="text-left w-full max-w-6xl mx-auto">
-                    <h2 style={{ paddingLeft: isMobile ? "18px" : "20px", paddingRight: isMobile ? "18px" : "0px" }} className="text-3xl md:text-4xl font-extrabold tracking-tight mt-3 text-neutral-900 dark:text-neutral-50 uppercase font-mono">
+                <div style={{ marginBottom: "50px", paddingLeft: isMobile ? "18px" : "0px", paddingRight: isMobile ? "18px" : "0px" }} className="text-left md:text-center w-full max-w-6xl mx-auto">
+                    <h2 className="text-3xl md:text-[40px] font-mono font-extrabold tracking-tight text-neutral-900 dark:text-neutral-50 uppercase select-none">
                         EDUCATION & MILESTONES
                     </h2>
                 </div>

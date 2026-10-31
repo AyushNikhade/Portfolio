@@ -579,7 +579,7 @@ export default function Skillsection() {
       <div className="max-w-7xl mx-auto w-full px-8 md:px-20 mb-16 flex flex-col items-start md:items-center shrink-0">
         <div className="mb-16 text-left md:text-center relative z-10 shrink-0" style={{ paddingBottom: "100px", paddingLeft: !isDesktop ? "18px" : "0px", paddingRight: !isDesktop ? "18px" : "0px" }}>
 
-          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mt-3 text-neutral-900 dark:text-neutral-50 uppercase">
+          <h2 className="text-3xl md:text-[40px] font-mono font-extrabold tracking-tight mt-3 text-neutral-900 dark:text-neutral-50 uppercase select-none">
             SKILLS
           </h2>
           <p className="text-neutral-500 dark:text-neutral-400 text-xs max-w-md mt-2 leading-relaxed md:mx-auto">

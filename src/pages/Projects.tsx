@@ -234,7 +234,7 @@ export default function Projects() {
       <div className="max-w-5xl mx-auto w-full px-8 md:px-12 relative z-10 flex flex-col items-start md:items-center flex-1 justify-center">
         {/* Bold uppercase Heading PROJECTS */}
         <div className="w-full text-left md:text-center mb-10 shrink-0" style={{ paddingLeft: isMobile ? '18px' : '0px', paddingRight: isMobile ? '18px' : '0px' }}>
-          <h2 className="text-4xl md:text-5xl font-black text-black dark:text-white uppercase tracking-normal font-sans select-none">
+          <h2 className="text-3xl md:text-[40px] font-mono font-extrabold tracking-tight text-neutral-900 dark:text-neutral-50 uppercase select-none">
             PROJECTS
           </h2>
         </div>

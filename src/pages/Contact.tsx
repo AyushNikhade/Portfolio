@@ -95,7 +95,7 @@ export default function Contact() {
         {/* Section Header */}
         <div className="text-left md:text-center relative z-10 shrink-0">
 
-          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mt-3 text-neutral-900 dark:text-neutral-50 uppercase">
+          <h2 className="text-3xl md:text-[40px] font-mono font-extrabold tracking-tight mt-3 text-neutral-900 dark:text-neutral-50 uppercase select-none">
             CONTACT
           </h2>
           <p className="text-neutral-500 dark:text-neutral-400 text-xs max-w-md mt-2 leading-relaxed md:mx-auto">

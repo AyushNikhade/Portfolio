@@ -239,7 +239,7 @@ export default function Contact() {
                   className="w-16 h-16 object-contain transform rotate-[-65deg] transition-all duration-300"
                 />
                  <a
-                  href="https://github.com/Megh1701/keyboard-app"
+                  href="https://github.com/AyushNikhade/keyboard-app"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[17px] font-bold tracking-wide text-emerald-700 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 transition-all duration-300 pointer-events-auto relative"
